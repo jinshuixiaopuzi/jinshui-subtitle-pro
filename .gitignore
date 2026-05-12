@@ -23,6 +23,10 @@ _tauri_staging/
 _nuitka_test.build/
 nuitka_pyd/
 
+# ===== 构建配置 (不上传) =====
+api_server.spec
+installer/
+
 # ===== 二进制文件 =====
 ffmpeg.exe
 *.exe
