@@ -1,0 +1,71 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+*.manifest
+venv/
+.env
+*.log
+
+# ===== AI 模型 (太大，用户自行下载) =====
+models/
+
+# ===== 构建产物 =====
+dist/
+_tauri_staging/
+_nuitka_test.build/
+nuitka_pyd/
+
+# ===== 二进制文件 =====
+ffmpeg.exe
+*.exe
+*.bin
+
+# ===== 临时文件 =====
+temp/
+*.wav
+*.mp4
+
+# ===== 许可证/密钥 =====
+license.key
+*.key
+settings.json
+
+# ===== Node / 前端 =====
+node_modules/
+frontend/dist/
+frontend/src-tauri/target/
+frontend/src-tauri/gen/
+
+# ===== IDE / 编辑器 =====
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swo
+*~
+
+# ===== 系统文件 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Claude Code =====
+.claude/
+
+# ===== 备份目录 =====
+字幕源码/
+
+# ===== 日志 =====
+*.log
+logs/

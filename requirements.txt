@@ -1,0 +1,69 @@
+# ===== 金水字幕 Pro v2.0 — Python 依赖清单 =====
+# 安装: pip install -r requirements.txt
+# 注意: PyTorch CUDA 版本需单独安装，见下方说明
+
+# ===== Web API 服务 =====
+fastapi>=0.136.0
+uvicorn[standard]>=0.46.0
+pydantic>=2.13.0
+python-multipart>=0.0.27
+
+# ===== AI 语音识别 (ASR) =====
+# Qwen3-ASR 官方包 (含 ASR 模型 + ForcedAligner)
+qwen-asr>=0.0.6
+qwen-omni-utils>=0.0.9
+# HuggingFace 模型加载
+transformers>=4.57.0
+accelerate>=1.12.0
+safetensors>=0.7.0
+tokenizers>=0.22.0
+sentencepiece>=0.2.0
+huggingface_hub>=0.36.0
+# 日语分词 (qwen_asr 依赖)
+nagisa>=0.2.11
+
+# ===== PyTorch (CUDA 12.1 版本，需根据你的 GPU 选择) =====
+# 方法1: pip 安装 (推荐)
+# pip install torch==2.5.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
+#
+# 方法2: 如果不用 GPU，安装 CPU 版:
+# pip install torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+#
+# torch>=2.5.0
+# torchaudio>=2.5.0
+
+# ===== AI 翻译 =====
+openai>=2.36.0          # DeepSeek API (兼容 OpenAI SDK)
+deep-translator>=1.11.0  # Google 免费翻译
+translators>=6.0.0       # 百度免费翻译 (多引擎)
+
+# ===== 音视频处理 =====
+ffmpeg-python>=0.2.0
+soundfile>=0.13.0
+librosa>=0.10.0
+audioread>=3.1.0
+scipy>=1.17.0
+numpy>=2.4.0
+av>=17.0.0              # PyAV (备用音视频解码)
+
+# ===== HTTP / 网络 =====
+httpx>=0.28.0
+aiohttp>=3.13.0
+requests>=2.33.0
+
+# ===== 工具库 =====
+tqdm>=4.67.0
+PyYAML>=6.0.0
+Pillow>=12.2.0
+Jinja2>=3.1.0
+regex>=2026.4.0
+anyio>=4.13.0
+
+# ===== GUI 桌面界面 (可选，仅 main_gui.py 需要) =====
+# PySide6>=6.11.0
+# PySide6-Fluent-Widgets>=1.11.0
+
+# ===== 开发 / 构建工具 (仅开发时需要) =====
+# PyInstaller>=6.20.0      # 打包为 .exe
+# Nuitka>=4.0.0            # 编译 .py → .pyd 机器码
+# pyinstaller-hooks-contrib>=2026.5

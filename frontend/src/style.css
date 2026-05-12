@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+/* ===== SAO 暗紫荧光风格 主题系统 ===== */
+@theme {
+  --color-background: #0B0813;
+  --color-surface: #120B24;
+  --color-surface-light: #1A1033;
+  --color-primary: #9D4EDD;
+  --color-primary-light: #B86BFF;
+  --color-accent: #00F5D4;
+  --color-accent-dim: rgba(0, 245, 212, 0.6);
+  --color-danger: #FF007A;
+  --color-danger-light: #FF3399;
+  --color-border: #2D1B4E;
+  --color-border-light: #4A2D7A;
+  --color-text-primary: #E8E0F0;
+  --color-text-dim: #8A7AA8;
+}
+
+/* ===== 全局样式 ===== */
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: 'JetBrains Mono', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+}
+
+/* ===== 网格背景纹理 ===== */
+.sao-grid {
+  background-image:
+    linear-gradient(rgba(157, 78, 221, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 78, 221, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ===== 扫描线 CRT 效果 ===== */
+.sao-crt::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ===== 发光边框 ===== */
+.sao-border {
+  position: relative;
+}
+.sao-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  pointer-events: none;
+}
+.sao-border:focus-within::before,
+.sao-border:hover::before {
+  border-color: rgba(157, 78, 221, 0.6);
+  box-shadow: 0 0 12px rgba(157, 78, 221, 0.2), inset 0 0 12px rgba(157, 78, 221, 0.05);
+}
+
+/* ===== 直角 HUD 边框 ===== */
+.sao-hud {
+  position: relative;
+  border: 1px solid rgba(157, 78, 221, 0.25);
+}
+.sao-hud::before,
+.sao-hud::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--color-accent);
+  border-style: solid;
+  opacity: 0.7;
+}
+.sao-hud::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+.sao-hud::after {
+  top: -1px;
+  right: -1px;
+  border-width: 2px 2px 0 0;
+}
+.sao-hud .corner-bl,
+.sao-hud .corner-br {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--color-accent);
+  border-style: solid;
+  opacity: 0.7;
+}
+.sao-hud .corner-bl {
+  bottom: -1px;
+  left: -1px;
+  border-width: 0 0 2px 2px;
+}
+.sao-hud .corner-br {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+/* ===== 脉冲光环动画 (Link Start) ===== */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes scanline-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh);
+  }
+}
+
+@keyframes link-start-exit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+    filter: blur(12px);
+  }
+}
+
+@keyframes data-stream {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100vh;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(0, 245, 212, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.6);
+  }
+}
+
+/* ===== 自定义滚动条 ===== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(157, 78, 221, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(157, 78, 221, 0.5);
+}
+
+/* ===== 输入框选择高亮 ===== */
+::selection {
+  background: rgba(157, 78, 221, 0.3);
+  color: #fff;
+}
+
+/* ===== 滑块（战术面板） ===== */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: var(--color-border);
+  border-radius: 2px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 8px rgba(0, 245, 212, 0.4);
+}
